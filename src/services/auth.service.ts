@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { UserRepository } from '../repositories/user.repository';
-import { ApplicationError } from '../errors/error';
+import { ApplicationError } from '../utils/error';
 import { UserDTO, UserLoginDTO, UserRegisterDTO } from '../dto/user.dto';
 import { jwtConfig } from '../config/jwt.config';
 
