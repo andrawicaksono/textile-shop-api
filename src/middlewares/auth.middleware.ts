@@ -1,12 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 import { UserRepository } from '../repositories/user.repository';
 import jwt from 'jsonwebtoken';
-import { User, UserRole } from '../models/user.model';
+import { UserRole } from '../models/user.model';
 import { jwtConfig } from '../config/jwt.config';
+import { UserDTO } from '../dto/user.dto';
 
 declare module 'express' {
   interface Request {
-    user?: User;
+    user?: UserDTO;
   }
 };
 
@@ -19,7 +20,10 @@ export const authenticateJWT = async (req: Request, res: Response, next: NextFun
     const decoded: any = jwt.verify(token, jwtConfig.jwtSecret || '');
 
     if (!decoded.userId) {
-      return res.status(401).json({ message: "Authorization failed"})
+      return res.status(401).json({
+        statusCode: 401,
+        message: "Authorization failed"
+      })
     }
 
     const [user, errorUser] = await userRepository.findUserById(decoded.userId);
@@ -28,7 +32,10 @@ export const authenticateJWT = async (req: Request, res: Response, next: NextFun
     }
 
     if (!user) {
-      return res.status(401).json({ message: "User not found"})
+      return res.status(401).json({
+        statusCode: 401,
+        message: "User not found"
+      })
     }
     
     req.user = user;
@@ -43,7 +50,10 @@ export const checkRole = async (role: UserRole) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (req.user?.role != role) {
-        return res.status(403).json({ message: "Access denied"})
+        return res.status(403).json({
+          statusCode: 403,
+          message: "Access denied"
+        })
       }
       
       next();

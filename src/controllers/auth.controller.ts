@@ -18,7 +18,11 @@ export class AuthController {
         throw error;
       }
 
-      return res.status(201).json(user);
+      return res.status(201).json({
+        statusCode: 201,
+        message: "Register success",
+        data: user
+      });
     } catch (error: any) {
       next(error)
     }
@@ -33,7 +37,11 @@ export class AuthController {
         throw error;
       }
 
-      return res.status(200).json(user);
+      return res.status(200).json({
+        statusCode: 200,
+        message: "Login success",
+        data: user
+      });
     } catch (error: any) {
       next(error)
     }
