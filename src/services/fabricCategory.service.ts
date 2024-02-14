@@ -32,7 +32,7 @@ export class FabricCategoryService {
       }
 
       if (!category) {
-        throw new ApplicationError('Fabric category not found', 404);
+        throw new ApplicationError('Category not found', 404);
       }
       
       return [category, null];
@@ -50,7 +50,7 @@ export class FabricCategoryService {
       }
       
       if (!existingCategory) {
-        throw new ApplicationError('User not found', 404);
+        throw new ApplicationError('Category not found', 404);
       }
 
       const updatedCategory = { ...existingCategory, ...categoryData };

@@ -8,6 +8,7 @@ export class FabricCategoryRepository {
         name: categoryData.name,
         description: categoryData?.description
       });
+
       return [category, null];
     } catch (error: any) {
       return [null, error];
@@ -17,6 +18,7 @@ export class FabricCategoryRepository {
   findCategoryById = async (id: number): Promise<[FabricCategoryDTO | null, Error | null]> => {
     try {
       const category = await FabricCategory.findByPk(id);
+
       return [category, null];
     } catch (error: any) {
       return [null, error];
@@ -39,15 +41,17 @@ export class FabricCategoryRepository {
   deleteCategoryById = async (id: number): Promise<[boolean, Error | null]> => {
     try {
       const rowsDeleted = await FabricCategory.destroy({ where: { id } });
+
       return [rowsDeleted > 0, null];
     } catch (error: any) {
       return [false, error];
     }
   }
 
-  findAllCategories = async (): Promise<[FabricCategory[] | null, Error | null]> => {
+  findAllCategories = async (): Promise<[FabricCategoryDTO[] | null, Error | null]> => {
     try {
       const categories = await FabricCategory.findAll();
+
       return [categories, null];
     } catch (error: any) {
       return [null, error];

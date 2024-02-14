@@ -16,8 +16,8 @@ export class TodoController {
         throw error;
       }
 
-      return res.status(201).json({
-        statusCode: 201,
+      return res.status(200).json({
+        statusCode: 200,
         message: "Get todo list success",
         data: todos
       });

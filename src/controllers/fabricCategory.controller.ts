@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { FabricCategoryService } from '../../services/fabricCategory.service';
-import { FabricCategoryCreateDTO, FabricCategoryUpdateDTO } from '../../dto/fabricCategory.dto';
-import { ApplicationError } from '../../utils/error';
+import { FabricCategoryService } from '../services/fabricCategory.service';
+import { FabricCategoryCreateDTO, FabricCategoryUpdateDTO } from '../dto/fabricCategory.dto';
+import { ApplicationError } from '../utils/error';
 
 export class FabricCategoryController {
   private fabricCategoryService: FabricCategoryService;
