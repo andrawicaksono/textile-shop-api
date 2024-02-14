@@ -58,4 +58,11 @@ export class User extends Model {
     field: "role"
   })
   role?: UserRole;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull:true,
+    field: "photo"
+  })
+  photo?: string
 }

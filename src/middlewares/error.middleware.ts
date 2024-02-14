@@ -5,8 +5,15 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
   console.error(err.stack);
 
   if (err instanceof ApplicationError) {
-    res.status(err.statusCode).json({ message: err.message });
+    res.status(err.statusCode).json({
+      statusCode: err.statusCode,
+      message: err.message
+    });
   } else {
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({
+      statusCode: 500,
+      message: 'Internal Server Error',
+      errors: err.message
+    });
   }
 };

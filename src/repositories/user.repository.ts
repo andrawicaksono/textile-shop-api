@@ -1,8 +1,8 @@
-import { UserRegisterDTO } from '../dto/user.dto';
+import { UserDTO, UserRegisterDTO, UserUpdateDTO } from '../dto/user.dto';
 import { User } from '../models/user.model';
 
 export class UserRepository {
-  async createUser(userData: UserRegisterDTO): Promise<[User | null, Error | null]> {
+  async createUser(userData: UserRegisterDTO): Promise<[UserDTO | null, Error | null]> {
     try {
       const user = await User.create({
         name: userData.name,
@@ -15,7 +15,7 @@ export class UserRepository {
     }
   }
 
-  async findUserByEmail(email: string): Promise<[User | null, Error | null]> {
+  async findUserByEmail(email: string): Promise<[UserDTO | null, Error | null]> {
     try {
       const user = await User.findOne({ where: { email } });
       return [user, null];
@@ -24,7 +24,7 @@ export class UserRepository {
     }
   }
 
-  async findUserById(id: string): Promise<[User | null, Error | null]> {
+  async findUserById(id: string): Promise<[UserDTO | null, Error | null]> {
     try {
       const user = await User.findOne({ where: { id } });
       return [user, null];
@@ -33,7 +33,7 @@ export class UserRepository {
     }
   }
 
-  async updateUserById(id: string, userData: User): Promise<[User, null] | [null, Error]> {
+  async updateUserById(id: string, userData: UserUpdateDTO): Promise<[UserDTO, null] | [null, Error]> {
     try {
       const updatedUser = await User.update(userData, {
         where: { id },
@@ -46,12 +46,12 @@ export class UserRepository {
     }
   }
 
-  async deleteUserById(id: string): Promise<[number | null, Error | null]> {
+  async deleteUserById(id: string): Promise<[boolean, Error | null]> {
     try {
       const rowsDeleted = await User.destroy({ where: { id } });
-      return [rowsDeleted, null];
+      return [rowsDeleted > 1, null];
     } catch (error:any) {
-      return [null, error];
+      return [false, error];
     }
   }
 
