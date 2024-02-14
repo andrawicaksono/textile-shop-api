@@ -36,10 +36,10 @@ export class UserService {
       if (updateError) throw updateError;
       
       return [{
-        id: updated.id,
-        name: updated.name,
-        email: updated.email,
-        role: updated.role
+        id: updated?.id,
+        name: updated?.name,
+        email: updated?.email,
+        role: updated?.role
       }, null];
     } catch (error: any) {
       return [null, error];

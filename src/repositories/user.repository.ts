@@ -7,7 +7,8 @@ export class UserRepository {
       const user = await User.create({
         name: userData.name,
         email: userData.email,
-        password: userData.password
+        password: userData.password,
+        role: userData?.role
       });
       return [user, null];
     } catch (error:any) {
@@ -33,7 +34,7 @@ export class UserRepository {
     }
   }
 
-  async updateUserById(id: string, userData: UserUpdateDTO): Promise<[UserDTO, null] | [null, Error]> {
+  async updateUserById(id: string, userData: UserUpdateDTO): Promise<[UserDTO | null, Error | null]> {
     try {
       const updatedUser = await User.update(userData, {
         where: { id },
@@ -49,7 +50,7 @@ export class UserRepository {
   async deleteUserById(id: string): Promise<[boolean, Error | null]> {
     try {
       const rowsDeleted = await User.destroy({ where: { id } });
-      return [rowsDeleted > 1, null];
+      return [rowsDeleted > 0, null];
     } catch (error:any) {
       return [false, error];
     }

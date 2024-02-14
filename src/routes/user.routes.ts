@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { UserRepository } from '../../repositories/user.repository';
-import { UserService } from '../../services/user.service';
-import { UserController } from '../../controllers/buyer/user.controller';
+import { UserRepository } from '../repositories/user.repository';
+import { UserService } from '../services/user.service';
+import { UserController } from '../controllers/user.controller';
 
 const userRouter = Router();
 
@@ -13,11 +13,11 @@ userRouter.get('/',
   userController.getUserProfile
 );
 
-userRouter.put('/update',
+userRouter.put('/',
   userController.updateUserProfile
 );
 
-userRouter.delete('/delete',
+userRouter.delete('/',
   userController.deleteUserProfile
 );
 

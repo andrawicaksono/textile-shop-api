@@ -27,7 +27,8 @@ export class AuthService {
       const [newUser, createUserError] = await this.userRepository.createUser({
         email: userData.email,
         password: hashedPassword,
-        name: userData.name
+        name: userData.name,
+        role: userData?.role
       });
       if (createUserError) {
         throw createUserError;

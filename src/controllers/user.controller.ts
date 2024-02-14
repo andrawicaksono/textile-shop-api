@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserService } from '../../services/user.service';
-import { UserUpdateDTO, UserDTO } from '../../dto/user.dto';
-import { ApplicationError } from '../../utils/error';
+import { UserService } from '../services/user.service';
+import { UserUpdateDTO, UserDTO } from '../dto/user.dto';
+import { ApplicationError } from '../utils/error';
 
 declare module 'express' {
   interface Request {
