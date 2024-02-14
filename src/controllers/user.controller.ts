@@ -56,7 +56,6 @@ export class UserController {
       return res.status(200).json({
         statusCode: 200,
         message: "Update user profile success",
-        data: updatedUser
       });
     } catch (error: any) {
       next(error)

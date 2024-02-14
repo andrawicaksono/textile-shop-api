@@ -9,11 +9,18 @@ export class UserService {
     this.userRepository = userRepository;
   }
 
-  async getUserById(id: string): Promise<[UserDTO | null, Error | null]> {
+  getUserById = async (id: string): Promise<[UserDTO | null, Error | null]> => {
     try {
       const [user, error] = await this.userRepository.findUserById(id);
-      if (error) throw error;
-      if (!user) throw new ApplicationError('User not found', 404);
+      
+      if (error) {
+        throw error;
+      }
+
+      if (!user) {
+        throw new ApplicationError('User not found', 404);
+      }
+
       return [{
         id: user.id,
         name: user.name,
@@ -27,15 +34,24 @@ export class UserService {
     }
   }
 
-  async updateUserDetails(id: string, userData: UserUpdateDTO): Promise<[UserDTO | null, Error | null]> {
+  updateUserDetails = async (id: string, userData: UserUpdateDTO): Promise<[UserDTO | null, Error | null]> => {
     try {
       const [existingUser, error] = await this.userRepository.findUserById(id);
-      if (error) throw error;
-      if (!existingUser) throw new ApplicationError('User not found', 404);
+      
+      if (error) {
+        throw error;
+      }
+      
+      if (!existingUser) {
+        throw new ApplicationError('User not found', 404);
+      }
 
       const updatedUser = { ...existingUser, ...userData };
       const [updated, updateError] = await this.userRepository.updateUserById(id, updatedUser);
-      if (updateError) throw updateError;
+      
+      if (updateError) {
+        throw updateError;
+      }
       
       return [{
         id: updated?.id,
@@ -48,10 +64,12 @@ export class UserService {
     }
   }
 
-  async deleteUserById(id: string): Promise<[boolean, Error | null]> {
+  deleteUserById = async (id: string): Promise<[boolean, Error | null]> => {
     try {
       const [userDeleted, error] = await this.userRepository.deleteUserById(id);
-      if (error) throw error;
+      if (error) {
+        throw error;
+      }
       if (!userDeleted) {
         throw new ApplicationError("User not found", 404);
       }
@@ -61,10 +79,12 @@ export class UserService {
     }
   }
 
-  async getAllUsers(): Promise<[UserDTO[] | null, Error | null]> {
+  getAllUsers = async (): Promise<[UserDTO[] | null, Error | null]> => {
     try {
       const [users, error] = await this.userRepository.findAllUsers();
-      if (error) throw error;
+      if (error) {
+        throw error;
+      }
       if (!users) return [null, new ApplicationError('Users is empty', 404)];
 
       return [users.map(user => ({

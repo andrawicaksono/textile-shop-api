@@ -3,7 +3,7 @@ import path from 'path';
 import { ApplicationError } from '../utils/error';
 
 export class FileService {
-  async getFile(filename: string): Promise<[ReadStream | null, Error | null]> {
+  getFile = async (filename: string): Promise<[ReadStream | null, Error | null]> => {
     try {
       const filePath = path.join(__dirname, '../../uploads', filename);
 

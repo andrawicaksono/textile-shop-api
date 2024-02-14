@@ -12,7 +12,7 @@ export class AuthService {
     this.userRepository = userRepository;
   }
 
-  async registerUser(userData: UserRegisterDTO): Promise<[UserDTO | null, Error | null]> {
+  registerUser = async(userData: UserRegisterDTO): Promise<[UserDTO | null, Error | null]> => {
     try {
       const [existingUser, existingUserError] = await this.userRepository.findUserByEmail(userData.email || "");
       if (existingUserError) {
@@ -45,7 +45,7 @@ export class AuthService {
     }
   }
 
-  async loginUser(loginData: UserLoginDTO): Promise<[UserDTO | null, Error | null]> {
+  loginUser = async (loginData: UserLoginDTO): Promise<[UserDTO | null, Error | null]> => {
     try {
       const [user, findUserError] = await this.userRepository.findUserByEmail(loginData.email || "");
       

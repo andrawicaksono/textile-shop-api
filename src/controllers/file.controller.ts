@@ -18,7 +18,7 @@ export class FileController {
 
       res.status(200).json({
         statusCode: 200,
-        message: 'File uploaded successfully',
+        message: 'File upload success',
         filepath: "/api/v1/file/download/" + file.filename
       });
     } catch (error: any) {

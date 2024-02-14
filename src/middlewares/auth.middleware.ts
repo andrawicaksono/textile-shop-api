@@ -46,7 +46,7 @@ export const authenticateJWT = async (req: Request, res: Response, next: NextFun
   }
 };
 
-export const checkRole = async (role: UserRole) =>
+export const checkRole = (role: UserRole) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (req.user?.role != role) {

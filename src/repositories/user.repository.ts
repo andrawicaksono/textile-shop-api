@@ -2,7 +2,7 @@ import { UserDTO, UserRegisterDTO, UserUpdateDTO } from '../dto/user.dto';
 import { User } from '../models/user.model';
 
 export class UserRepository {
-  async createUser(userData: UserRegisterDTO): Promise<[UserDTO | null, Error | null]> {
+  createUser = async (userData: UserRegisterDTO): Promise<[UserDTO | null, Error | null]> => {
     try {
       const user = await User.create({
         name: userData.name,
@@ -10,31 +10,34 @@ export class UserRepository {
         password: userData.password,
         role: userData?.role
       });
+
       return [user, null];
     } catch (error:any) {
       return [null, error];
     }
   }
 
-  async findUserByEmail(email: string): Promise<[UserDTO | null, Error | null]> {
+  findUserByEmail = async (email: string): Promise<[UserDTO | null, Error | null]> => {
     try {
       const user = await User.findOne({ where: { email } });
+
       return [user, null];
     } catch (error:any) {
       return [null, error];
     }
   }
 
-  async findUserById(id: string): Promise<[UserDTO | null, Error | null]> {
+  findUserById = async (id: string): Promise<[UserDTO | null, Error | null]> => {
     try {
       const user = await User.findByPk(id);
+
       return [user, null];
     } catch (error:any) {
       return [null, error];
     }
   }
 
-  async updateUserById(id: string, userData: UserUpdateDTO): Promise<[UserDTO | null, Error | null]> {
+  updateUserById = async (id: string, userData: UserUpdateDTO): Promise<[UserDTO | null, Error | null]> => {
     try {
       const updatedUser = await User.update(userData, {
         where: { id },
@@ -47,16 +50,17 @@ export class UserRepository {
     }
   }
 
-  async deleteUserById(id: string): Promise<[boolean, Error | null]> {
+  deleteUserById = async (id: string): Promise<[boolean, Error | null]> => {
     try {
       const rowsDeleted = await User.destroy({ where: { id } });
+
       return [rowsDeleted > 0, null];
     } catch (error:any) {
       return [false, error];
     }
   }
 
-  async findAllUsers(): Promise<[User[] | null, Error | null]> {
+  findAllUsers = async (): Promise<[User[] | null, Error | null]> => {
     try {
       const users = await User.findAll();
       return [users, null];

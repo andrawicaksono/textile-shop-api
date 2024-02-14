@@ -1,8 +1,8 @@
 import { Model, Column, Table, DataType } from 'sequelize-typescript';
 
 export enum UserRole {
-  SELLER='seller',
-  BUYER='buyer'
+  SELLER='SELLER',
+  BUYER='BUYER'
 }
 
 @Table({
