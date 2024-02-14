@@ -22,9 +22,23 @@ export class OrderProduct extends Model {
   orderId?: string;
 
   @Column({
-    type: DataType.INTEGER,
+    type: DataType.BIGINT,
     allowNull:false,
     field: "productId"
   })
   productId?: number
+
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+    field: "quantity"
+  })
+  quantity?: number
+
+  @Column({
+    type: DataType.DECIMAL,
+    allowNull: false,
+    field: "amount"
+  })
+  amount?: number
 }

@@ -26,7 +26,7 @@ export class Product extends Model {
     allowNull: false,
     field: "name"
   })
-  name?: string;
+  name?: string;  
 
   @Column({
     type: DataType.STRING,
@@ -65,4 +65,11 @@ export class Product extends Model {
     defaultValue: 0
   })
   stock?: number;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull:true,
+    field: "photo"
+  })
+  photo?: string
 }

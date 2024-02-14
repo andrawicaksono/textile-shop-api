@@ -7,7 +7,7 @@ import { Product } from "../models/product.model";
 import { Order } from "../models/order.model";
 import { OrderProduct } from "../models/orderProduct.model";
 
-export class Database {
+class Database {
   public sequelize: Sequelize | undefined;
 
   constructor() {
@@ -71,3 +71,5 @@ export class Database {
       });
     }
 }
+
+export const db = new Database();

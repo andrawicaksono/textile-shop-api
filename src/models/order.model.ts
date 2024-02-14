@@ -23,8 +23,16 @@ export class Order extends Model {
 
   @Column({
     type: DataType.STRING,
-    allowNull:true,
+    allowNull:false,
     field: "address"
   })
   address?: string
+
+  @Column({
+    type: DataType.DECIMAL,
+    allowNull: false,
+    field: "totalAmount",
+    defaultValue: 0
+  })
+  totalAmount?: number
 }

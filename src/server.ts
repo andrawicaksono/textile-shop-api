@@ -4,7 +4,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import routes from './routes';
 import { errorHandler } from './middlewares/error.middleware';
-import { Database } from './db';
+import { db } from './db';
 import dotenv from 'dotenv';
 dotenv.config()
 
@@ -19,7 +19,6 @@ app.use('/api/v1', routes);
 
 app.use(errorHandler);
 
-const db = new Database();
 db.sequelize?.sync();
 
 const port = process.env.PORT;

@@ -41,7 +41,7 @@ export class ProductService {
     }
   }
 
-  updateProductById = async (id: number, productData: ProductUpdateDTO): Promise<[ProductDTO | null, Error | null]> => {
+  updateProductById = async (id: number, productData: ProductUpdateDTO): Promise<[boolean, Error | null]> => {
     try {
       const [existingProduct, error] = await this.productRepository.findProductById(id);
       
@@ -63,7 +63,7 @@ export class ProductService {
       
       return [updated, null];
     } catch (error: any) {
-      return [null, error];
+      return [false, error];
     }
   }
 

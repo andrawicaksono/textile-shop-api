@@ -7,6 +7,7 @@ export interface ProductDTO {
   price?: number,
   stock?: number,
   fabricId?: number;
+  photo?: string,
 }
 
 export interface ProductCreateDTO {
@@ -17,6 +18,7 @@ export interface ProductCreateDTO {
   price: number,
   stock: number,
   fabricId: number;
+  photo?: string,
 }
 
 export interface ProductUpdateDTO {
@@ -27,4 +29,5 @@ export interface ProductUpdateDTO {
   price?: number,
   stock?: number,
   fabricId?: number;
+  photo?: string,
 }

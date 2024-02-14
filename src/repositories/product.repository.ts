@@ -11,7 +11,8 @@ export class ProductRepository {
         colour: productData?.colour,
         price: productData.price,
         stock: productData.stock,
-        fabricId: productData.fabricId
+        fabricId: productData.fabricId,
+        photo: productData?.photo
       });
 
       return [product, null];
@@ -30,16 +31,15 @@ export class ProductRepository {
     }
   }
 
-  updateProductById = async (id: number, productData: ProductUpdateDTO): Promise<[ProductDTO | null, Error | null]> => {
+  updateProductById = async (id: number, productData: ProductUpdateDTO): Promise<[boolean, Error | null]> => {
     try {
       const updatedProduct = await Product.update(productData, {
         where: { id },
-        returning: true
       });
 
-      return [updatedProduct[1][0], null];
+      return [updatedProduct[0] > 0, null];
     } catch (error:any) {
-      return [null, error];
+      return [false, error];
     }
   }
 

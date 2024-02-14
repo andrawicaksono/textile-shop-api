@@ -49,7 +49,7 @@ export class User extends Model {
   address?: string
 
   @Column({
-    type: DataType.ENUM({values: Object.keys(UserRole)}),
+    type: DataType.ENUM({values: Object.values(UserRole)}),
     allowNull: false,
     validate: {
       isIn: [Object.values(UserRole)],
