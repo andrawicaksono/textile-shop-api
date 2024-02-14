@@ -57,14 +57,10 @@ export class FabricController {
       const id: number = parseInt(req.params.id);
       const fabricData: FabricUpdateDTO = req.body;
 
-      const [updatedFabric, error] = await this.fabricService.updateFabricById(id, fabricData);
+      const [_, error] = await this.fabricService.updateFabricById(id, fabricData);
       
       if (error) {
         throw error;
-      }
-      
-      if (!updatedFabric) {
-        throw new ApplicationError('Fabric not found', 404);
       }
 
       res.status(200).json({

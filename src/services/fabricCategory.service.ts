@@ -1,5 +1,5 @@
 import { FabricCategoryRepository } from '../repositories/fabricCategory.repository';
-import { FabricCategoryDTO, FabricCategoryCreateDTO } from '../dto/fabricCategory.dto';
+import { FabricCategoryDTO, FabricCategoryCreateDTO, FabricCategoryUpdateDTO } from '../dto/fabricCategory.dto';
 import { ApplicationError } from '../utils/error';
 
 export class FabricCategoryService {
@@ -41,7 +41,7 @@ export class FabricCategoryService {
     }
   }
 
-  updateCategoryById = async (id: number, categoryData: FabricCategoryDTO): Promise<[FabricCategoryDTO | null, Error | null]> => {
+  updateCategoryById = async (id: number, categoryData: FabricCategoryUpdateDTO): Promise<[FabricCategoryDTO | null, Error | null]> => {
     try {
       const [existingCategory, error] = await this.fabricCategoryRepository.findCategoryById(id);
       
@@ -61,11 +61,7 @@ export class FabricCategoryService {
         throw updateError;
       }
       
-      return [{
-        id: updated?.id,
-        name: updated?.name,
-        description: updated?.description
-      }, null];
+      return [updated, null];
     } catch (error: any) {
       return [null, error];
     }

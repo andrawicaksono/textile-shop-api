@@ -57,14 +57,10 @@ export class FabricCategoryController {
       const id: number = parseInt(req.params.id);
       const categoryData: FabricCategoryUpdateDTO = req.body;
 
-      const [updatedCategory, error] = await this.fabricCategoryService.updateCategoryById(id, categoryData);
+      const [_, error] = await this.fabricCategoryService.updateCategoryById(id, categoryData);
       
       if (error) {
         throw error;
-      }
-      
-      if (!updatedCategory) {
-        throw new ApplicationError('Fabric category not found', 404);
       }
 
       res.status(200).json({

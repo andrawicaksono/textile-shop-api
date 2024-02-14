@@ -41,7 +41,7 @@ export class FabricService {
     }
   }
 
-  updateFabricById = async (id: number, fabricData: FabricDTO): Promise<[FabricDTO | null, Error | null]> => {
+  updateFabricById = async (id: number, fabricData: FabricUpdateDTO): Promise<[FabricDTO | null, Error | null]> => {
     try {
       const [existingFabric, error] = await this.fabricRepository.findFabricById(id);
       
@@ -61,12 +61,7 @@ export class FabricService {
         throw updateError;
       }
       
-      return [{
-        id: updated?.id,
-        name: updated?.name,
-        description: updated?.description,
-        material: updated?.material
-      }, null];
+      return [updated, null];
     } catch (error: any) {
       return [null, error];
     }

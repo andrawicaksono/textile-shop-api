@@ -7,6 +7,7 @@ import userRouter from './user.routes';
 import todoRouter from './todo.routes';
 import fabricCategoryRouter from './fabricCategory.routes';
 import fabricRouter from './fabric.routes';
+import productRouter from './product.routes';
 
 const router = Router();
 
@@ -16,6 +17,7 @@ router.use('/file', fileRouter);
 router.use('/profile', userRouter);
 router.use('/todo', todoRouter);
 router.use('/category', fabricCategoryRouter);
-router.use('/fabric', fabricRouter)
+router.use('/fabric', fabricRouter);
+router.use('/product', productRouter);
 
 export default router;

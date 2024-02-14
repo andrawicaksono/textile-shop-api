@@ -53,14 +53,16 @@ export class Product extends Model {
   @Column({
     type: DataType.DECIMAL,
     allowNull: false,
-    field: 'price'
+    field: 'price',
+    defaultValue: 0
   })
   price?: number;
 
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
-    field: 'stock'
+    field: 'stock',
+    defaultValue: 0
   })
   stock?: number;
 }
