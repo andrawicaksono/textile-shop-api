@@ -18,7 +18,9 @@ export class UserService {
         id: user.id,
         name: user.name,
         email: user.email,
-        role: user.role
+        role: user.role,
+        photo:user?.photo,
+        address: user?.address
       }, null];
     } catch (error: any) {
       return [null, error];

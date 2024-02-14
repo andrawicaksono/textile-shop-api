@@ -27,7 +27,7 @@ export class UserRepository {
 
   async findUserById(id: string): Promise<[UserDTO | null, Error | null]> {
     try {
-      const user = await User.findOne({ where: { id } });
+      const user = await User.findByPk(id);
       return [user, null];
     } catch (error:any) {
       return [null, error];

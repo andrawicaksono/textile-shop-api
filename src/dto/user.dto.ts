@@ -5,6 +5,7 @@ export interface UserDTO {
   password?: string,
   role?: string,
   photo?: string,
+  address?: string,
   token?: string
 }
 
@@ -23,5 +24,6 @@ export interface UserLoginDTO {
 export interface UserUpdateDTO {
   name?: string,
   role?: string,
-  photo?: string
+  photo?: string,
+  address?: string,
 }
