@@ -21,6 +21,7 @@ class Database {
       username: dbConfig.USER,
       password: dbConfig.PASSWORD,
       host: dbConfig.HOST,
+      port: dbConfig.PORT,
       dialect: dialect,
       pool: {
         max: dbConfig.pool.max,

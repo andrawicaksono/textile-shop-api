@@ -6,6 +6,7 @@ export const dbConfig = {
   USER: process.env.DB_USER,
   PASSWORD: process.env.DB_PASSWORD,
   DB: process.env.DB_NAME,
+  PORT: parseInt(process.env.DB_PORT || "3306"),
   pool: {
     max: 5,
     min: 0,
