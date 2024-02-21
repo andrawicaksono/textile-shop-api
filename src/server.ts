@@ -21,8 +21,8 @@ app.use(errorHandler);
 
 db.sequelize?.sync();
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
-app.listen(port || 3000, () => {
-  console.log('Server is running on port 3000');
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
