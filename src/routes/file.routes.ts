@@ -9,8 +9,6 @@ const fileRouter = Router();
 const fileService = new FileService();
 const fileController = new FileController(fileService);
 
-
-
 fileRouter.post('/upload', authenticateJWT, upload, fileController.uploadFile);
 
 fileRouter.get('/download/:filename', fileController.getFile);
